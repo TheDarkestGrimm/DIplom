@@ -10,7 +10,7 @@ mpl.rcParams['axes.formatter.useoffset'] = False
 mpl.rcParams['axes.formatter.limits'] = [-5, 5]
 
 # === 1) Вводимые параметры ===
-nx, ny, nz = 100, 40, 40  # исходное разрешение
+nx, ny, nz = 130, 52, 52  # исходное разрешение
 Lx = 1.0  # длина канала, м
 S0, S1 = 0.05, 0.30  # сторона квадрата на входе/выходе, м
 
@@ -69,7 +69,7 @@ def simulate(nx, ny, nz, T_in, T_sat, T_wall_init, u_flow, dt, total_t, run_labe
     rho_loc = rho_loc.copy()  # Создание копии для предотвращения изменения исходных данных
     print(f"Форма rho_loc после копирования: {rho_loc.shape}")  # Вывод формы массива rho_loc
 
-    u_loc = u_flow * (S0 / Si_arr) ** 2  # Начальная скорость потока с учетом сужения
+    u_loc = u_flow * (S0 / Si_arr) ** 2  # Начальная скорость потока с учетом расширения
     u_loc = np.broadcast_to(np.expand_dims(np.expand_dims(u_loc, axis=1), axis=2), (nx, ny, nz))  # Расширение u_loc в 3D
     u_loc = u_loc.copy()  # Создание копии для предотвращения изменения исходных данных
     print(f"Форма u_loc после копирования: {u_loc.shape}")  # Вывод формы массива u_loc
